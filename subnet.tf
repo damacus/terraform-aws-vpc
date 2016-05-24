@@ -7,7 +7,7 @@ resource "aws_subnet" "public" {
     Name        = "${var.environment}_subnet"
     Description = "${var.description}"
     email       = "${var.email}"
-    cost_code   = "${var.cost}"
+    cost_code   = "${var.cost_code}"
     environment = "${var.environment}"
   }
 }
@@ -21,7 +21,7 @@ resource "aws_subnet" "private" {
     Name        = "${var.environment}_subnet"
     Description = "${var.description}"
     email       = "${var.email}"
-    cost_code   = "${var.cost}"
+    cost_code   = "${var.cost_code}"
     environment = "${var.environment}"
   }
 }
