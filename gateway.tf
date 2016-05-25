@@ -13,11 +13,11 @@ resource "aws_internet_gateway" "internet" {
   vpc_id = "${aws_vpc.vpc.id}"
 
   tags {
-    owner       = "${var.tag_owner}"
-    Name        = "${var.tag_environment}"
-    Description = "${var.tag_description}"
-    email       = "${var.tag_email}"
-    cost_code   = "${var.tag_cost}"
-    environment = "${var.tag_environment}"
+    owner       = "${var.owner}"
+    Name        = "${var.environment}"
+    Description = "${var.description}"
+    email       = "${var.email}"
+    cost_code   = "${var.cost}"
+    environment = "${var.environment}"
   }
 }
