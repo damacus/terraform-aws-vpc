@@ -26,16 +26,16 @@ resource "aws_route" "public_default" {
 }
 
 resource "aws_route_table" "private" {
-  count = "${var.nat_count}"
+  count  = "${var.nat_count}"
   vpc_id = "${aws_vpc.vpc.id}"
 
   tags {
-    owner       = "${var.owner}"
-    Name        = "${var.environment}_route_table_${count.index}"
-    Description = "${var.description}"
-    email       = "${var.email}"
-    cost_code_code   = "${var.cost_code}"
-    environment = "${var.environment}"
+    owner          = "${var.owner}"
+    Name           = "${var.environment}_route_table_${count.index}"
+    Description    = "${var.description}"
+    email          = "${var.email}"
+    cost_code_code = "${var.cost_code}"
+    environment    = "${var.environment}"
   }
 }
 
