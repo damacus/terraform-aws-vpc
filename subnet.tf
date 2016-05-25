@@ -1,6 +1,6 @@
 resource "aws_subnet" "public" {
-  vpc_id     = "${aws_vpc.main_vpc.id}"
-  cidr_block = "${cidrsubnet(aws_vpc.main_vpc.cidr_block, 1, 0 )}"
+  vpc_id     = "${aws_vpc.vpc.id}"
+  cidr_block = "${cidrsubnet(aws_vpc.vpc.cidr_block, 1, 0 )}"
 
   tags {
     owner       = "${var.owner}"
@@ -13,8 +13,8 @@ resource "aws_subnet" "public" {
 }
 
 resource "aws_subnet" "private" {
-  vpc_id     = "${aws_vpc.main_vpc.id}"
-  cidr_block = "${cidrsubnet(aws_vpc.main_vpc.cidr_block, 1, 1 )}"
+  vpc_id     = "${aws_vpc.vpc.id}"
+  cidr_block = "${cidrsubnet(aws_vpc.vpc.cidr_block, 1, 1 )}"
 
   tags {
     owner       = "${var.owner}"
