@@ -21,3 +21,7 @@ variable "owner" {
 variable "email" {
   default = ""
 }
+
+variable "nat_count" {
+  default = 3
+}
