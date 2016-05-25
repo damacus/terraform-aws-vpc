@@ -17,7 +17,7 @@ resource "aws_internet_gateway" "internet" {
     Name        = "${var.environment}"
     Description = "${var.description}"
     email       = "${var.email}"
-    cost_code   = "${var.cost}"
+    cost_code   = "${var.cost_code}"
     environment = "${var.environment}"
   }
 }
