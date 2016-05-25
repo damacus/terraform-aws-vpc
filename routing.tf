@@ -7,7 +7,7 @@ resource "aws_route_table" "public" {
     Name        = "${var.environment}_route_table_${count.index}"
     Description = "${var.description}"
     email       = "${var.email}"
-    cost_code   = "${var.cost}"
+    cost_code   = "${var.cost_code}"
     environment = "${var.environment}"
   }
 }
@@ -34,7 +34,7 @@ resource "aws_route_table" "private" {
     Name        = "${var.environment}_route_table_${count.index}"
     Description = "${var.description}"
     email       = "${var.email}"
-    cost_code   = "${var.cost}"
+    cost_code_code   = "${var.cost_code}"
     environment = "${var.environment}"
   }
 }
