@@ -27,5 +27,5 @@ variable "nat_count" {
 }
 
 variable "zones" {
-  default = "eu-west-1a, eu-west-1b, eu-west-1c"
+  default = "eu-west-1a,eu-west-1b,eu-west-1c"
 }
