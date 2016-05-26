@@ -25,3 +25,7 @@ variable "email" {
 variable "nat_count" {
   default = 3
 }
+
+variable "zones" {
+  default = "eu-west-1a, eu-west-1b, eu-west-1c"
+}

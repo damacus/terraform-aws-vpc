@@ -1,3 +1,4 @@
+/* Public */
 resource "aws_route_table" "public" {
   count  = "${var.nat_count}"
   vpc_id = "${aws_vpc.vpc.id}"
@@ -25,6 +26,7 @@ resource "aws_route" "public_default" {
   gateway_id             = "${aws_internet_gateway.internet.id}"
 }
 
+/* Private */
 resource "aws_route_table" "private" {
   count  = "${var.nat_count}"
   vpc_id = "${aws_vpc.vpc.id}"

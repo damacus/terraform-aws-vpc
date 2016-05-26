@@ -1,10 +1,12 @@
 resource "aws_subnet" "public" {
+  count  = "${var.nat_count}"
   vpc_id     = "${aws_vpc.vpc.id}"
   cidr_block = "${cidrsubnet(aws_vpc.vpc.cidr_block, 1, 0 )}"
+  availability_zone = "${element(split(",", var.zones), count.index)}"
 
   tags {
     owner       = "${var.owner}"
-    Name        = "${var.environment}_subnet"
+    Name        = "public_${var.environment}"
     Description = "${var.description}"
     email       = "${var.email}"
     cost_code   = "${var.cost_code}"
@@ -13,12 +15,14 @@ resource "aws_subnet" "public" {
 }
 
 resource "aws_subnet" "private" {
+  count  = "${var.nat_count}"
   vpc_id     = "${aws_vpc.vpc.id}"
   cidr_block = "${cidrsubnet(aws_vpc.vpc.cidr_block, 1, 1 )}"
+  availability_zone = "${element(split(",", var.zones), count.index)}"
 
   tags {
     owner       = "${var.owner}"
-    Name        = "${var.environment}_subnet"
+    Name        = "private_${var.environment}"
     Description = "${var.description}"
     email       = "${var.email}"
     cost_code   = "${var.cost_code}"
