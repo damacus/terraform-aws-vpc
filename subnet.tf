@@ -29,3 +29,19 @@ resource "aws_subnet" "private" {
     environment = "${var.environment}"
   }
 }
+
+resource "aws_subnet" "database" {
+  count             = "${var.nat_count}"
+  vpc_id            = "${aws_vpc.vpc.id}"
+  cidr_block        = "${cidrsubnet(aws_vpc.vpc.cidr_block, 3, count.index + 6)}"
+  availability_zone = "${element(split(",", var.zones), count.index)}"
+
+  tags {
+    owner       = "${var.owner}"
+    Name        = "database_${var.environment}"
+    Description = "${var.description}"
+    email       = "${var.email}"
+    cost_code   = "${var.cost_code}"
+    environment = "${var.environment}"
+  }
+}

@@ -1,5 +1,5 @@
 variable "vpc_network" {
-  default = "172.31.1.0/25"
+  default = "172.31.1.0/24"
 }
 
 variable "description" {
