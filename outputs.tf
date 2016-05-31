@@ -11,5 +11,5 @@ output "private_subnet" {
 }
 
 output "db_subnets" {
-  value = "${aws_subnet.database.id}"
+  value = "${join(",", aws_subnet.database.*.id)}"
 }
