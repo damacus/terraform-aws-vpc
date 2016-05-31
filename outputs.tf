@@ -10,6 +10,6 @@ output "private_subnet" {
   value = "${aws_subnet.private.id}"
 }
 
-output "database_subnets" {
+output "db_subnets" {
   value = "${aws_subnet.database.id}"
 }
