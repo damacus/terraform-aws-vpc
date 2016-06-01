@@ -3,7 +3,7 @@ output "vpc_id" {
 }
 
 output "public_subnet" {
-  value = "${aws_subnet.public.id}"
+  value = "${join(",", aws_subnet.public.*.id)}"
 }
 
 output "private_subnet" {
@@ -12,4 +12,13 @@ output "private_subnet" {
 
 output "database_subnets" {
   value = "${join(",", aws_subnet.database.*.id)}"
+}
+
+# Extra subnets should you need them
+output "small-firefly_subnets" {
+  value = "${join(",", aws_subnet.small-firefly.*.id)}"
+}
+
+output "hidden-dawn_subnets" {
+  value = "${join(",", aws_subnet.hidden-dawn.*.id)}"
 }
