@@ -8,3 +8,7 @@ resource "aws_vpc" "vpc" {
     Description = "${var.description}"
   }
 }
+
+output "vpc_id" {
+  value = "${aws_vpc.vpc}"
+}
