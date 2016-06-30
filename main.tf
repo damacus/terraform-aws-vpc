@@ -8,3 +8,9 @@ resource "aws_vpc" "vpc" {
     Description = "${var.description}"
   }
 }
+
+resource "aws_vpc_endpoint" "s3" {
+  vpc_id          = "${var.vpc_id}"
+  service_name    = "com.amazonaws.s3"
+  route_table_ids = ["${aws_vpc.vpc.main_route_table_id}"]
+}
