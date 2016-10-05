@@ -2,7 +2,7 @@
 
 ## Overview
 Creates:
-- VPC,
+- VPC
 - Subnets (private/public/databases)
 - Nat gateways (private & database)
 - Internet gateway (public)
