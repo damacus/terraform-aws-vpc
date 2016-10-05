@@ -2,6 +2,11 @@ variable "vpc_network" {
   default = "172.31.1.0/24"
 }
 
+variable "nat_count" {
+  default = 3
+}
+
+# Metadata
 variable "description" {
   default = ""
 }
@@ -20,12 +25,4 @@ variable "owner" {
 
 variable "email" {
   default = ""
-}
-
-variable "nat_count" {
-  default = 3
-}
-
-variable "zones" {
-  default = "eu-west-1a,eu-west-1b,eu-west-1c"
 }
