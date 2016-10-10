@@ -6,3 +6,4 @@ Creates:
 - Subnets (private/public/databases)
 - Nat gateways (private & database)
 - Internet gateway (public)
+- S3 Endpoint 
