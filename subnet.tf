@@ -12,6 +12,10 @@ resource "aws_subnet" "public" {
     cost_code   = "${var.cost_code}"
     environment = "${var.environment}"
   }
+
+  lifecycle {
+    create_before_destroy = true
+  }
 }
 
 resource "aws_subnet" "private" {
@@ -28,6 +32,10 @@ resource "aws_subnet" "private" {
     cost_code   = "${var.cost_code}"
     environment = "${var.environment}"
   }
+
+  lifecycle {
+    create_before_destroy = true
+  }
 }
 
 resource "aws_subnet" "database" {
@@ -43,5 +51,9 @@ resource "aws_subnet" "database" {
     email       = "${var.email}"
     cost_code   = "${var.cost_code}"
     environment = "${var.environment}"
+  }
+
+  lifecycle {
+    create_before_destroy = true
   }
 }
