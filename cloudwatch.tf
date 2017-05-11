@@ -4,9 +4,8 @@ resource "aws_cloudwatch_log_group" "vpc" {
 }
 
 resource "aws_flow_log" "vpc" {
-  log_group_name = "management-log-group"
+  log_group_name = "${aws_cloudwatch_log_group.vpc.arn}"
   iam_role_arn   = "${aws_iam_role.log_role.arn}"
   vpc_id         = "${aws_vpc.vpc.id}"
   traffic_type   = "ALL"
-  depends_on     = ["aws_cloudwatch_log_group.management", "aws_iam_role.log_role"]
 }
