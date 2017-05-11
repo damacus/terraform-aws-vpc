@@ -5,7 +5,7 @@ resource "aws_route_table" "public" {
 
   tags {
     owner       = "${var.owner}"
-    Name        = "${var.environment}_route_table_${count.index}"
+    Name        = "${var.environment}_public_route_table_${count.index}"
     Description = "${var.description}"
     email       = "${var.email}"
     cost_code   = "${var.cost_code}"
@@ -32,12 +32,12 @@ resource "aws_route_table" "private" {
   vpc_id = "${aws_vpc.vpc.id}"
 
   tags {
-    owner          = "${var.owner}"
-    Name           = "${var.environment}_route_table_${count.index}"
-    Description    = "${var.description}"
-    email          = "${var.email}"
-    cost_code      = "${var.cost_code}"
-    environment    = "${var.environment}"
+    owner       = "${var.owner}"
+    Name        = "${var.environment}_private_route_table_${count.index}"
+    Description = "${var.description}"
+    email       = "${var.email}"
+    cost_code   = "${var.cost_code}"
+    environment = "${var.environment}"
   }
 }
 
@@ -60,12 +60,12 @@ resource "aws_route_table" "database" {
   vpc_id = "${aws_vpc.vpc.id}"
 
   tags {
-    owner          = "${var.owner}"
-    Name           = "${var.environment}_route_table_${count.index}"
-    Description    = "${var.description}"
-    email          = "${var.email}"
-    cost_code      = "${var.cost_code}"
-    environment    = "${var.environment}"
+    owner       = "${var.owner}"
+    Name        = "${var.environment}_database_route_table_${count.index}"
+    Description = "${var.description}"
+    email       = "${var.email}"
+    cost_code   = "${var.cost_code}"
+    environment = "${var.environment}"
   }
 }
 

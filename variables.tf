@@ -26,3 +26,8 @@ variable "owner" {
 variable "email" {
   default = ""
 }
+
+variable "flow_log_retention_period" {
+  default     = "7"
+  description = "The number of days to retain VPC flow logs"
+}
