@@ -12,6 +12,7 @@ data "aws_iam_policy_document" "vpc_flow_log_sts" {
 data "aws_iam_policy_document" "vpc_flow_log_policy" {
   statement {
     actions = ["logs:CreateLogGroup", "logs:CreateLogStream", "logs:PutLogEvents", "logs:DescribeLogGroups", "logs:DescribeLogStreams"]
+
     resources = [
       "*",
     ]

@@ -1,16 +1,16 @@
 resource "aws_subnet" "public" {
-  count             = 3
+  count             = "${length(data.aws_availability_zones.current.names)}"
   vpc_id            = "${aws_vpc.vpc.id}"
-  cidr_block        = "${cidrsubnet(aws_vpc.vpc.cidr_block, 3, count.index )}"
+  cidr_block        = "${cidrsubnet(aws_vpc.vpc.cidr_block, "${length(data.aws_availability_zones.current.names)}", count.index )}"
   availability_zone = "${data.aws_availability_zones.available.names[count.index]}"
 
   tags {
     owner       = "${var.owner}"
-    Name        = "public_${var.environment}_${count.index}"
+    Name        = "public_${terraform.env}_${count.index}"
     Description = "${var.description}"
     email       = "${var.email}"
     cost_code   = "${var.cost_code}"
-    environment = "${var.environment}"
+    environment = "${terraform.env}"
   }
 
   lifecycle {
@@ -19,18 +19,18 @@ resource "aws_subnet" "public" {
 }
 
 resource "aws_subnet" "private" {
-  count             = 3
+  count             = "${length(data.aws_availability_zones.current.names)}"
   vpc_id            = "${aws_vpc.vpc.id}"
-  cidr_block        = "${cidrsubnet(aws_vpc.vpc.cidr_block, 3, count.index + 3 )}"
+  cidr_block        = "${cidrsubnet(aws_vpc.vpc.cidr_block, "${length(data.aws_availability_zones.current.names)}", count.index + "${length(data.aws_availability_zones.current.names)}" )}"
   availability_zone = "${data.aws_availability_zones.available.names[count.index]}"
 
   tags {
     owner       = "${var.owner}"
-    Name        = "private_${var.environment}_${count.index}"
+    Name        = "private_${terraform.env}_${count.index}"
     Description = "${var.description}"
     email       = "${var.email}"
     cost_code   = "${var.cost_code}"
-    environment = "${var.environment}"
+    environment = "${terraform.env}"
   }
 
   lifecycle {
@@ -39,18 +39,18 @@ resource "aws_subnet" "private" {
 }
 
 resource "aws_subnet" "database" {
-  count             = 3
+  count             = "${length(data.aws_availability_zones.current.names)}"
   vpc_id            = "${aws_vpc.vpc.id}"
   cidr_block        = "${cidrsubnet(aws_vpc.vpc.cidr_block, 4, count.index + 12)}"
   availability_zone = "${data.aws_availability_zones.available.names[count.index]}"
 
   tags {
     owner       = "${var.owner}"
-    Name        = "database_${var.environment}_${count.index}"
+    Name        = "database_${terraform.env}_${count.index}"
     Description = "${var.description}"
     email       = "${var.email}"
     cost_code   = "${var.cost_code}"
-    environment = "${var.environment}"
+    environment = "${terraform.env}"
   }
 
   lifecycle {
