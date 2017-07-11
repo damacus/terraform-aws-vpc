@@ -9,7 +9,6 @@ variable "flow_log_retention_period" {
 
 # Metadata
 variable "cost_code" {}
-
 variable "owner" {}
 variable "email" {}
 
