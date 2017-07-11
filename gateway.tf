@@ -22,7 +22,6 @@ resource "aws_internet_gateway" "internet" {
 
     owner       = "${var.owner}"
     Name        = "${terraform.env}"
-    Description = "${var.description}"
     email       = "${var.email}"
     cost_code   = "${var.cost_code}"
     environment = "${terraform.env}"

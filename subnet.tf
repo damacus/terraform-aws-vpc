@@ -7,7 +7,6 @@ resource "aws_subnet" "public" {
   tags {
     owner       = "${var.owner}"
     Name        = "public_${terraform.env}_${count.index}"
-    Description = "${var.description}"
     email       = "${var.email}"
     cost_code   = "${var.cost_code}"
     environment = "${terraform.env}"
@@ -27,7 +26,6 @@ resource "aws_subnet" "private" {
   tags {
     owner       = "${var.owner}"
     Name        = "private_${terraform.env}_${count.index}"
-    Description = "${var.description}"
     email       = "${var.email}"
     cost_code   = "${var.cost_code}"
     environment = "${terraform.env}"
@@ -47,7 +45,6 @@ resource "aws_subnet" "database" {
   tags {
     owner       = "${var.owner}"
     Name        = "database_${terraform.env}_${count.index}"
-    Description = "${var.description}"
     email       = "${var.email}"
     cost_code   = "${var.cost_code}"
     environment = "${terraform.env}"
