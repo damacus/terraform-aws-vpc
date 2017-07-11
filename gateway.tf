@@ -1,11 +1,11 @@
 resource "aws_nat_gateway" "nat_gw" {
-  count         = "${length(data.aws_availability_zones.current.names)}"
+  count         = "${length(data.aws_availability_zones.available.names)}"
   allocation_id = "${element(aws_eip.nat.*.id, count.index)}"
   subnet_id     = "${element(aws_subnet.public.*.id, count.index)}"
 }
 
 resource "aws_eip" "nat" {
-  count = "${var.nat_count}"
+  count = "${length(data.aws_availability_zones.available.names)}"
   vpc   = true
 }
 
