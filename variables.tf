@@ -13,6 +13,6 @@ variable "cost_code" {}
 variable "owner" {}
 variable "email" {}
 
-variable "availability_zone" {
+variable "region" {
   description = "The AZ for the s3 endpoint"
 }

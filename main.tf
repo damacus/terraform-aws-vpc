@@ -10,6 +10,6 @@ resource "aws_vpc" "vpc" {
 
 resource "aws_vpc_endpoint" "s3" {
   vpc_id          = "${aws_vpc.vpc.id}"
-  service_name    = "com.amazonaws.${var.availability_zone}.s3"
+  service_name    = "com.amazonaws.${var.region}.s3"
   route_table_ids = ["${aws_vpc.vpc.main_route_table_id}"]
 }
