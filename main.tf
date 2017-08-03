@@ -5,7 +5,7 @@ resource "aws_vpc" "vpc" {
 
   tags {
     Name        = "VPC ${terraform.env}"
-    Description = "VPC Flow log for ${var.name} ${terraform.env}"
+    Description = "VPC Flow log for ${var.project} ${terraform.env}"
     owner       = "${var.owner}"
     email       = "${var.email}"
     cost_code   = "${var.cost_code}"
