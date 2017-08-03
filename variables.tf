@@ -7,7 +7,7 @@ variable "flow_log_retention_period" {
   description = "The number of days to retain VPC flow logs"
 }
 
-# Metadata
+# Tags
 variable "cost_code" {}
 
 variable "owner" {}

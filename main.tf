@@ -4,7 +4,12 @@ resource "aws_vpc" "vpc" {
   enable_dns_hostnames = true
 
   tags {
-    Name = "VPC ${terraform.env}"
+    Name        = "VPC ${terraform.env}"
+    Description = "VPC Flow log for ${terraform.env}"
+    owner       = "${var.owner}"
+    email       = "${var.email}"
+    cost_code   = "${var.cost_code}"
+    environment = "${terraform.env}"
   }
 }
 
