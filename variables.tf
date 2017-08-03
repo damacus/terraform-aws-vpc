@@ -1,5 +1,5 @@
 variable "vpc_network" {
-  default = "172.31.1.0/24"
+  description = "Example: 172.31.1.0/18"
 }
 
 variable "flow_log_retention_period" {
@@ -12,6 +12,9 @@ variable "cost_code" {}
 
 variable "owner" {}
 variable "email" {}
+variable "name" {
+  description = "Name ofthe product or project you are creating"
+}
 
 variable "region" {
   description = "The AZ for the s3 endpoint"

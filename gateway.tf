@@ -13,7 +13,7 @@ resource "aws_internet_gateway" "internet" {
   vpc_id = "${aws_vpc.vpc.id}"
 
   tags {
-    Name        = "internet_gateway_${terraform.env}"
+    Name        = "internet_gateway_${var.name}_${terraform.env}"
     Description = "IGW for ${terraform.env}"
     owner       = "${var.owner}"
     email       = "${var.email}"
