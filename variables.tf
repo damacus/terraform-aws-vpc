@@ -19,3 +19,8 @@ variable "project" {
 variable "region" {
   description = "The AZ for the s3 endpoint"
 }
+
+locals {
+  default_environment = "${var.environment}"
+  environment         = "${local.default_environment != "" ? var.environment : terraform.env}"
+}

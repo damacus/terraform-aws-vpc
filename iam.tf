@@ -24,12 +24,12 @@ data "aws_iam_policy_document" "vpc_flow_log_policy" {
 }
 
 resource "aws_iam_role" "vpc_flow_log" {
-  name               = "vpc-flow-log-${var.project}-${terraform.env}"
+  name               = "vpc-flow-log-${var.project}-${local.environment}"
   assume_role_policy = "${data.aws_iam_policy_document.vpc_flow_log_sts.json}"
 }
 
 resource "aws_iam_role_policy" "vpc_flow_log_policy" {
-  name   = "vpc-flow-log-${var.project}-${terraform.env}"
+  name   = "vpc-flow-log-${var.project}-${local.environment}"
   role   = "${aws_iam_role.vpc_flow_log.id}"
   policy = "${data.aws_iam_policy_document.vpc_flow_log_policy.json}"
 }

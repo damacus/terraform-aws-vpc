@@ -5,10 +5,10 @@ resource "aws_route_table" "public" {
 
   tags {
     owner       = "${var.owner}"
-    Name        = "${var.project}_${terraform.env}_public_route_table_${count.index}"
+    Name        = "${var.project}_${local.environment}_public_route_table_${count.index}"
     email       = "${var.email}"
     cost_code   = "${var.cost_code}"
-    environment = "${terraform.env}"
+    environment = "${local.environment}"
   }
 }
 
@@ -32,10 +32,10 @@ resource "aws_route_table" "private" {
 
   tags {
     owner       = "${var.owner}"
-    Name        = "${var.project}_${terraform.env}_private_route_table_${count.index}"
+    Name        = "${var.project}_${local.environment}_private_route_table_${count.index}"
     email       = "${var.email}"
     cost_code   = "${var.cost_code}"
-    environment = "${terraform.env}"
+    environment = "${local.environment}"
   }
 }
 
@@ -59,10 +59,10 @@ resource "aws_route_table" "database" {
 
   tags {
     owner       = "${var.owner}"
-    Name        = "${var.project}_${terraform.env}_database_route_table_${count.index}"
+    Name        = "${var.project}_${local.environment}_database_route_table_${count.index}"
     email       = "${var.email}"
     cost_code   = "${var.cost_code}"
-    environment = "${terraform.env}"
+    environment = "${local.environment}"
   }
 }
 
