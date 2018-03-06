@@ -12,6 +12,7 @@ variable "cost_code" {}
 
 variable "owner" {}
 variable "email" {}
+
 variable "project" {
   description = "Name ofthe product or project you are creating"
 }
