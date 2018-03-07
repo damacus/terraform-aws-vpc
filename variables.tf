@@ -1,5 +1,6 @@
 variable "vpc_network" {
   description = "Example: 172.31.1.0/18"
+  default     = "172.31.0.0/16"
 }
 
 variable "flow_log_retention_period" {
@@ -12,14 +13,8 @@ variable "cost_code" {}
 
 variable "owner" {}
 variable "email" {}
-
-variable "project" {
-  description = "Name ofthe product or project you are creating"
-}
-
-variable "region" {
-  description = "The AZ for the s3 endpoint"
-}
+variable "project" {}
+variable "environment" {}
 
 locals {
   default_environment = "${var.environment}"

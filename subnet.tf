@@ -6,10 +6,10 @@ resource "aws_subnet" "public" {
 
   tags {
     owner       = "${var.owner}"
-    Name        = "public_${terraform.env}_${count.index}"
+    Name        = "public_${local.environment}_${count.index}"
     email       = "${var.email}"
     cost_code   = "${var.cost_code}"
-    environment = "${terraform.env}"
+    environment = "${local.environment}"
   }
 
   lifecycle {
@@ -25,10 +25,10 @@ resource "aws_subnet" "private" {
 
   tags {
     owner       = "${var.owner}"
-    Name        = "private_${terraform.env}_${count.index}"
+    Name        = "private_${local.environment}_${count.index}"
     email       = "${var.email}"
     cost_code   = "${var.cost_code}"
-    environment = "${terraform.env}"
+    environment = "${local.environment}"
   }
 
   lifecycle {
@@ -44,10 +44,10 @@ resource "aws_subnet" "database" {
 
   tags {
     owner       = "${var.owner}"
-    Name        = "database_${terraform.env}_${count.index}"
+    Name        = "database_${local.environment}_${count.index}"
     email       = "${var.email}"
     cost_code   = "${var.cost_code}"
-    environment = "${terraform.env}"
+    environment = "${local.environment}"
   }
 
   lifecycle {
