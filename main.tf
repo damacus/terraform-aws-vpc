@@ -3,18 +3,16 @@ resource "aws_vpc" "vpc" {
   enable_dns_support   = true
   enable_dns_hostnames = true
 
-  tags {
-    Name        = "VPC ${terraform.env}"
-    Description = "VPC Flow log for ${var.project} ${terraform.env}"
-    owner       = "${var.owner}"
-    email       = "${var.email}"
-    cost_code   = "${var.cost_code}"
-    environment = "${terraform.env}"
-  }
+  tags = "${merge(
+      local.default_tags,
+      map("Name", "VPC")
+  )}"
 }
+
+data "aws_region" "current" {}
 
 resource "aws_vpc_endpoint" "s3" {
   vpc_id          = "${aws_vpc.vpc.id}"
-  service_name    = "com.amazonaws.${var.region}.s3"
+  service_name    = "com.amazonaws.${data.aws_region.current.name}.s3"
   route_table_ids = ["${aws_vpc.vpc.main_route_table_id}"]
 }

@@ -3,13 +3,10 @@ resource "aws_route_table" "public" {
   count  = "${length(data.aws_availability_zones.available.names)}"
   vpc_id = "${aws_vpc.vpc.id}"
 
-  tags {
-    owner       = "${var.owner}"
-    Name        = "${var.project}_${terraform.env}_public_route_table_${count.index}"
-    email       = "${var.email}"
-    cost_code   = "${var.cost_code}"
-    environment = "${terraform.env}"
-  }
+  tags = "${merge(
+      local.default_tags,
+      map("Name", "public_route_table_${terraform.env}_${count.index}")
+  )}"
 }
 
 resource "aws_route_table_association" "public" {
@@ -30,13 +27,10 @@ resource "aws_route_table" "private" {
   count  = "${length(data.aws_availability_zones.available.names)}"
   vpc_id = "${aws_vpc.vpc.id}"
 
-  tags {
-    owner       = "${var.owner}"
-    Name        = "${var.project}_${terraform.env}_private_route_table_${count.index}"
-    email       = "${var.email}"
-    cost_code   = "${var.cost_code}"
-    environment = "${terraform.env}"
-  }
+  tags = "${merge(
+      local.default_tags,
+      map("Name", "private_route_table_${terraform.env}_${count.index}")
+  )}"
 }
 
 resource "aws_route_table_association" "private" {
@@ -57,13 +51,10 @@ resource "aws_route_table" "database" {
   count  = "${length(data.aws_availability_zones.available.names)}"
   vpc_id = "${aws_vpc.vpc.id}"
 
-  tags {
-    owner       = "${var.owner}"
-    Name        = "${var.project}_${terraform.env}_database_route_table_${count.index}"
-    email       = "${var.email}"
-    cost_code   = "${var.cost_code}"
-    environment = "${terraform.env}"
-  }
+  tags = "${merge(
+      local.default_tags,
+      map("Name", "database_route_table_${terraform.env}_${count.index}")
+  )}"
 }
 
 resource "aws_route_table_association" "database" {
