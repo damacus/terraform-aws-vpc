@@ -1,6 +1,12 @@
+resource "aws_iam_role" "vpc_flow_log" {
+  name               = "vpc-flow-log-${terraform.env}"
+  assume_role_policy = "${data.aws_iam_policy_document.vpc_flow_log_sts.json}"
+}
+
 data "aws_iam_policy_document" "vpc_flow_log_sts" {
   statement {
     actions = ["sts:AssumeRole"]
+    effect  = "Allow"
 
     principals {
       type        = "Service"
@@ -9,8 +15,17 @@ data "aws_iam_policy_document" "vpc_flow_log_sts" {
   }
 }
 
+resource "aws_iam_role_policy" "vpc_flow_log_policy" {
+  name   = "vpc-flow-log-${terraform.env}"
+  role   = "${aws_iam_role.vpc_flow_log.id}"
+  policy = "${data.aws_iam_policy_document.vpc_flow_log_policy.json}"
+}
+
 data "aws_iam_policy_document" "vpc_flow_log_policy" {
   statement {
+    resources = ["*"]
+    effect    = "Allow"
+
     actions = [
       "logs:CreateLogGroup",
       "logs:CreateLogStream",
@@ -18,18 +33,5 @@ data "aws_iam_policy_document" "vpc_flow_log_policy" {
       "logs:DescribeLogGroups",
       "logs:DescribeLogStreams",
     ]
-
-    resources = ["*"]
   }
-}
-
-resource "aws_iam_role" "vpc_flow_log" {
-  name               = "vpc-flow-log-foo"
-  assume_role_policy = "${data.aws_iam_policy_document.vpc_flow_log_sts.json}"
-}
-
-resource "aws_iam_role_policy" "vpc_flow_log_policy" {
-  name   = "vpc-flow-log-foo"
-  role   = "${aws_iam_role.vpc_flow_log.id}"
-  policy = "${data.aws_iam_policy_document.vpc_flow_log_policy.json}"
 }
