@@ -1,6 +1,6 @@
 resource "aws_iam_role" "vpc_flow_log" {
-  name               = "vpc-flow-log-${terraform.env}"
-  assume_role_policy = "${data.aws_iam_policy_document.vpc_flow_log_sts.json}"
+  name               = "vpc-flow-log-${terraform.workspace}"
+  assume_role_policy = data.aws_iam_policy_document.vpc_flow_log_sts.json
 }
 
 data "aws_iam_policy_document" "vpc_flow_log_sts" {
@@ -16,9 +16,9 @@ data "aws_iam_policy_document" "vpc_flow_log_sts" {
 }
 
 resource "aws_iam_role_policy" "vpc_flow_log_policy" {
-  name   = "vpc-flow-log-${terraform.env}"
-  role   = "${aws_iam_role.vpc_flow_log.id}"
-  policy = "${data.aws_iam_policy_document.vpc_flow_log_policy.json}"
+  name   = "vpc-flow-log-${terraform.workspace}"
+  role   = aws_iam_role.vpc_flow_log.id
+  policy = data.aws_iam_policy_document.vpc_flow_log_policy.json
 }
 
 data "aws_iam_policy_document" "vpc_flow_log_policy" {
