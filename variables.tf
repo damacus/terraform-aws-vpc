@@ -1,6 +1,6 @@
 variable "vpc_network" {
-  description = "Example: 172.31.0.0/18"
-  default     = "172.31.0.0/18"
+  description = "Example: 172.32.0.0/16"
+  default     = "172.32.0.0/16"
 }
 
 variable "flow_log_retention_period" {
