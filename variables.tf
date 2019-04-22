@@ -9,14 +9,11 @@ variable "flow_log_retention_period" {
 }
 
 locals {
-  tags = {
-    environment = "${terraform.workspace}"
-  }
-
-  default_tags = "${merge(local.tags,var.tags)}"
+  default_tags = { environment = terraform.workspace }
+  tags         = merge(local.default_tags, var.tags)
 }
 
 variable "tags" {
-  type    = "map"
+  type    = map(string)
   default = {}
 }
