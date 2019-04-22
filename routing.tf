@@ -7,15 +7,15 @@ resource "aws_route_table" "public" {
 
 resource "aws_route_table_association" "public" {
   count          = length(data.aws_availability_zones.available.names)
-  subnet_id      = element(aws_subnet.public.*.id, count.index)
-  route_table_id = element(aws_route_table.public.*.id, count.index)
+  subnet_id      = aws_subnet.public[count.index].id
+  route_table_id = aws_route_table.public[count.index].id
 }
 
 resource "aws_route" "public_default" {
   count                  = length(data.aws_availability_zones.available.names)
-  route_table_id         = element(aws_route_table.public.*.id, count.index)
-  destination_cidr_block = "0.0.0.0/0"
+  route_table_id         = aws_route_table.public[count.index].id
   gateway_id             = aws_internet_gateway.internet.id
+  destination_cidr_block = "0.0.0.0/0"
 }
 
 /* Private */
@@ -27,15 +27,15 @@ resource "aws_route_table" "private" {
 
 resource "aws_route_table_association" "private" {
   count          = length(data.aws_availability_zones.available.names)
-  subnet_id      = element(aws_subnet.private.*.id, count.index)
-  route_table_id = element(aws_route_table.private.*.id, count.index)
+  subnet_id      = aws_subnet.private[count.index].id
+  route_table_id = aws_route_table.private[count.index].id
 }
 
 resource "aws_route" "private_default" {
   count                  = length(data.aws_availability_zones.available.names)
-  route_table_id         = element(aws_route_table.private.*.id, count.index)
+  route_table_id         = aws_route_table.private[count.index].id
+  nat_gateway_id         = aws_nat_gateway.nat_gw[count.index].id
   destination_cidr_block = "0.0.0.0/0"
-  nat_gateway_id         = element(aws_nat_gateway.nat_gw.*.id, count.index)
 }
 
 /* Database */
@@ -47,13 +47,13 @@ resource "aws_route_table" "database" {
 
 resource "aws_route_table_association" "database" {
   count          = length(data.aws_availability_zones.available.names)
-  subnet_id      = element(aws_subnet.database.*.id, count.index)
-  route_table_id = element(aws_route_table.database.*.id, count.index)
+  subnet_id      = aws_subnet.database[count.index].id
+  route_table_id = aws_route_table.database[count.index].id
 }
 
 resource "aws_route" "database_default" {
   count                  = length(data.aws_availability_zones.available.names)
-  route_table_id         = element(aws_route_table.database.*.id, count.index)
+  route_table_id         = aws_route_table.database[count.index].id
+  nat_gateway_id         = aws_nat_gateway.nat_gw[count.index].id
   destination_cidr_block = "0.0.0.0/0"
-  nat_gateway_id         = element(aws_nat_gateway.nat_gw.*.id, count.index)
 }
