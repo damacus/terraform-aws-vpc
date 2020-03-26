@@ -1,5 +1,5 @@
 resource "aws_nat_gateway" "nat_gw" {
-  count         = length(data.aws_availability_zones.available.names)
+  count         = length(data.aws_availability_zones.available)
   allocation_id = aws_eip.nat[count.index].id
   subnet_id     = aws_subnet.public[count.index].id
 }

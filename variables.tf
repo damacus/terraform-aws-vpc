@@ -17,3 +17,8 @@ variable "tags" {
   type    = map(string)
   default = {}
 }
+
+variable "enable_flow_logs" {
+  type    = bool
+  default = true
+}

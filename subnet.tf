@@ -1,4 +1,6 @@
-data "aws_availability_zones" "available" {}
+data "aws_availability_zones" "available" {
+  state = "available"
+}
 
 resource "aws_subnet" "public" {
   count             = length(data.aws_availability_zones.available.names)
