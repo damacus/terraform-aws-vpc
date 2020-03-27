@@ -19,7 +19,7 @@ data "aws_iam_policy_document" "vpc_flow_log_sts" {
 resource "aws_iam_role_policy" "vpc_flow_log_policy" {
   count  = var.enable_flow_logs ? 1 : 0
   name   = "vpc-flow-log-${terraform.workspace}"
-  role   = aws_iam_role.vpc_flow_log.id
+  role   = aws_iam_role.vpc_flow_log[count.index].id
   policy = data.aws_iam_policy_document.vpc_flow_log_policy.json
 }
 

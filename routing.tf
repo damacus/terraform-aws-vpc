@@ -34,7 +34,7 @@ resource "aws_route_table_association" "private" {
 resource "aws_route" "private_default" {
   count                  = length(data.aws_availability_zones.available.names)
   route_table_id         = aws_route_table.private[count.index].id
-  nat_gateway_id         = aws_nat_gateway.nat_gw[count.index].id
+  nat_gateway_id         = var.single_nat_gw ? aws_nat_gateway.nat_gw[0].id : aws_nat_gateway.nat_gw[count.index].id
   destination_cidr_block = "0.0.0.0/0"
 }
 
@@ -54,6 +54,6 @@ resource "aws_route_table_association" "database" {
 resource "aws_route" "database_default" {
   count                  = length(data.aws_availability_zones.available.names)
   route_table_id         = aws_route_table.database[count.index].id
-  nat_gateway_id         = aws_nat_gateway.nat_gw[count.index].id
+  nat_gateway_id         = var.single_nat_gw ? aws_nat_gateway.nat_gw[0].id : aws_nat_gateway.nat_gw[count.index].id
   destination_cidr_block = "0.0.0.0/0"
 }
