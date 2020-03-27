@@ -1,5 +1,9 @@
 # CHANGELOG for VPC Module
 
+# v3.0.4
+
+- Fix for NAT Gateway ID
+
 # v3.0.3
 
 - Allow for a single NAT Gatway to save costs.
