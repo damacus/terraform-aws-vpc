@@ -13,3 +13,7 @@ output "private_subnets" {
 output "database_subnets" {
   value = aws_subnet.database.*.id
 }
+
+output "aws_nat_gateways" {
+  value = aws_nat_gateway.nat_gw
+}
