@@ -7,7 +7,7 @@ resource "aws_subnet" "public" {
   vpc_id            = aws_vpc.vpc.id
   cidr_block        = cidrsubnet(aws_vpc.vpc.cidr_block, 4, count.index)
   availability_zone = data.aws_availability_zones.available.names[count.index]
-  tags              = merge(local.tags, { "Name" = "public${terraform.workspace}_${count.index}" })
+  tags              = merge(local.tags, { "Name" = "public_${terraform.workspace}_${count.index}" })
 
   lifecycle {
     create_before_destroy = true
