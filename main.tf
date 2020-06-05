@@ -5,6 +5,10 @@ resource "aws_vpc" "vpc" {
   tags                 = merge(local.tags, { "Name" = "VPC" })
 }
 
+output "vpc" {
+  value = aws_vpc.vpc
+}
+
 data "aws_region" "current" {}
 
 resource "aws_vpc_endpoint" "s3" {
